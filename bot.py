@@ -3,12 +3,18 @@ import os
 import random
 from venv import create
 
+import json
+
 import discord
 from discord.ext import commands
 from discord.utils import get
 from dotenv import load_dotenv
 
 from neuralintents import GenericAssistant
+
+var_dict = json.load(open('variable.json'))
+
+TOKEN = var_dict['TOKEN']
 
 chatbot = GenericAssistant('intents.json')
 chatbot.train_model()
@@ -17,7 +23,8 @@ chatbot.save_model()
 client = discord.Client()
 
 load_dotenv()
-# TOKEN = ('Add your own token here')
+
+
 
 intents = discord.Intents.default()
 intents.members = True
@@ -57,16 +64,16 @@ async def play_val(ctx):
 
 @bot.command(name = 'twitch')
 async def show_twitch(ctx):
-    twitch = ("https://www.twitch.tv/shaunnieee"),
+    twitch_url = ("https://www.twitch.tv/shaunnieee"),
 
-    response = random.choice(twitch)
+    response = random.choice(twitch_url)
     await ctx.send(response)
 
 @bot.command(name = 'linkedin')
 async def show_linkedin(ctx):
-    linkedin = ("https://sg.linkedin.com/in/shaun-hoon"),
+    linkedin_url = ("https://sg.linkedin.com/in/shaun-hoon"),
 
-    response = random.choice(linkedin)
+    response = random.choice(linkedin_url)
     await ctx.send(response)
 
 @bot.command(name = 'github')
