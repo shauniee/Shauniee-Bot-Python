@@ -12,10 +12,6 @@ from dotenv import load_dotenv
 
 from neuralintents import GenericAssistant
 
-var_dict = json.load(open('variable.json'))
-
-TOKEN = var_dict['TOKEN']
-
 chatbot = GenericAssistant('intents.json')
 chatbot.train_model()
 chatbot.save_model()
@@ -24,14 +20,14 @@ client = discord.Client()
 
 load_dotenv()
 
-
+var_dict = json.load(open('variable.json'))
+TOKEN = var_dict['TOKEN']
 
 intents = discord.Intents.default()
 intents.members = True
 
+
 bot = commands.Bot(command_prefix = '/', intents = intents)
-
-
 
 @bot.event
 async def on_member_join(member):
@@ -43,10 +39,13 @@ async def on_member_join(member):
 @bot.event
 async def on_message(message):
     if message.author == client.user:
-        return
+        await bot.process_commands(message)
     if message.content.startswith("Shauniee"):
         response = chatbot.request(message.content[7:])
+        print(response)
         await message.channel.send(response)
+
+    await bot.process_commands(message)
 
 @bot.command(name = 'aoyu')
 async def call_aoyu(ctx):
@@ -57,9 +56,9 @@ async def call_aoyu(ctx):
 
 @bot.command(name = 'val')
 async def play_val(ctx):
-    val = ("@everyone hi want val?"),
+    val_everyone = ("@everyone hi want val?"),
 
-    response = random.choice(val)
+    response = random.choice(val_everyone)
     await ctx.send(response)
 
 @bot.command(name = 'twitch')
@@ -78,9 +77,9 @@ async def show_linkedin(ctx):
 
 @bot.command(name = 'github')
 async def show_git(ctx):
-    git = ("https://github.com/shauniee"),
+    git_url = ("https://github.com/shauniee"),
 
-    response = random.choice(git)
+    response = random.choice(git_url)
     await ctx.send(response)
 
 bot.run(TOKEN)
