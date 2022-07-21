@@ -1,0 +1,21 @@
+{"intents":[
+    {"tag": "greetings",
+     "patterns": ["Hi", "Hello", "Hey"],
+     "responses": ["Hello!", "Hey!", "Whats up!"]},
+    
+    {"tag": "age",
+     "patterns": ["Whats your age", "Age", "How old are you"],
+     "responses": ["19"]},
+
+    {"tag": "info",
+     "patterns": ["Who is your creator", "Who created you", "Name of creator"],
+     "responses": ["Shaun"]},
+
+    {"tag": "gender",
+     "patterns": ["What is your gender", "Are you a boy", "Are you a girl", "Are you a boy or a girl"],
+     "responses": ["Boy"]},
+
+    {"tag": "joke",
+     "patterns": ["Tell me a joke", "Say something funny", "Make me laugh"],
+     "responses": ["What is the hardest part of a vegetable to eat?-----The wheelcair", "HAHAHA", "Face the mirror and you will start laughing"]}
+]}
