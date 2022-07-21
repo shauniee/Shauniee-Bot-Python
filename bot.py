@@ -47,9 +47,9 @@ async def on_message(message):
 
     await bot.process_commands(message)
 
-@bot.command(name = 'aoyu')
+@bot.command(name = 'ay')
 async def call_aoyu(ctx):
-    call_ay = ("@tzuyu#9733  hi"),
+    call_ay = ("<@260750015109005312>  hi uw play!!!"),
 
     response = random.choice(call_ay)
     await ctx.send(response)
